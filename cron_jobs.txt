@@ -1,0 +1,46 @@
+# File: cron_jobs.txt
+# Location: Root directory
+
+# WinABN Cron Jobs Configuration
+# Add these entries to your crontab using: crontab -e
+
+# Email Queue Worker - Process email queue every minute
+* * * * * /usr/bin/php /path/to/winabn/queues/email_worker.php >> /path/to/winabn/logs/cron.log 2>&1
+
+# WhatsApp Queue Worker - Process WhatsApp messages every minute
+* * * * * /usr/bin/php /path/to/winabn/queues/whatsapp_worker.php >> /path/to/winabn/logs/cron.log 2>&1
+
+# Currency Exchange Rate Update - Daily at 6:00 AM UTC
+0 6 * * * /usr/bin/php /path/to/winabn/queues/currency_updater.php >> /path/to/winabn/logs/cron.log 2>&1
+
+# Log Cleanup - Weekly on Sunday at 2:00 AM
+0 2 * * 0 /usr/bin/php /path/to/winabn/queues/log_cleanup.php >> /path/to/winabn/logs/cron.log 2>&1
+
+# Database Cleanup - Daily at 3:00 AM (remove expired sessions, old data)
+0 3 * * * /usr/bin/php /path/to/winabn/queues/database_cleanup.php >> /path/to/winabn/logs/cron.log 2>&1
+
+# Backup Database - Daily at 4:00 AM
+0 4 * * * /usr/bin/php /path/to/winabn/queues/database_backup.php >> /path/to/winabn/logs/cron.log 2>&1
+
+# Health Check Monitor - Every 5 minutes
+*/5 * * * * /usr/bin/php /path/to/winabn/queues/health_check.php >> /path/to/winabn/logs/cron.log 2>&1
+
+# Prize Fulfillment Reminders - Daily at 10:00 AM
+0 10 * * * /usr/bin/php /path/to/winabn/queues/prize_reminders.php >> /path/to/winabn/logs/cron.log 2>&1
+
+# Analytics Data Aggregation - Daily at 5:00 AM
+0 5 * * * /usr/bin/php /path/to/winabn/queues/analytics_aggregation.php >> /path/to/winabn/logs/cron.log 2>&1
+
+# Weekly Promotion WhatsApp Messages - Friday at 6:00 PM UTC
+0 18 * * 5 /usr/bin/php /path/to/winabn/queues/weekly_promotions.php >> /path/to/winabn/logs/cron.log 2>&1
+
+# Instructions for setup:
+# 1. Replace "/path/to/winabn" with your actual application path
+# 2. Ensure the web server user has permission to execute these scripts
+# 3. Create the logs directory if it doesn't exist: mkdir -p /path/to/winabn/logs
+# 4. Set appropriate permissions: chmod 755 /path/to/winabn/queues/*.php
+# 5. Test each script manually before adding to cron
+
+# Example setup commands:
+# sudo crontab -u www-data -e  # Edit crontab for web server user
+# sudo tail -f /path/to/winabn/logs/cron.log  # Monitor cron execution

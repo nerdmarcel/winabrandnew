@@ -1,0 +1,123 @@
+# File: .gitignore
+# Location: Root directory
+
+# WinABN - Git Ignore Configuration
+
+# Environment and Configuration
+.env
+.env.local
+.env.production
+.env.staging
+config/local.php
+
+# Dependencies
+/vendor/
+/node_modules/
+composer.lock
+package-lock.json
+yarn.lock
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.phpstorm.meta.php
+_ide_helper*.php
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.tmp
+*.temp
+
+# Logs and Runtime Files
+/logs/*.log
+/logs/*.txt
+*.log
+error_log
+access_log
+
+# Cache and Session Files
+/cache/*
+!/cache/.gitkeep
+/sessions/*
+!/sessions/.gitkeep
+/storage/cache/*
+!/storage/cache/.gitkeep
+
+# Backup Files
+/backups/*
+!/backups/.gitkeep
+*.sql
+*.sql.gz
+*.bak
+*.backup
+
+# Upload and Media Files
+/public/uploads/*
+!/public/uploads/.gitkeep
+/public/assets/images/uploads/*
+!/public/assets/images/uploads/.gitkeep
+
+# Testing and Coverage
+/coverage/
+.phpunit.result.cache
+phpunit.xml
+/.pest/
+
+# Build and Distribution
+/build/
+/dist/
+/public/build/
+
+# Temporary Files
+/tmp/*
+!/tmp/.gitkeep
+*.pid
+*.seed
+*.pid.lock
+
+# Security and Keys
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+*.crt
+*.csr
+/ssl/*
+!/ssl/.gitkeep
+
+# Payment Provider Test Files
+mollie_test_*
+stripe_test_*
+webhook_test_*
+
+# Development Tools
+.php_cs.cache
+.phpstan.neon
+phpstan.neon.dist
+
+# Documentation Build
+/docs/_build/
+/docs/.doctrees/
+
+# Local Development
+/local/
+*.local
+.envrc
+
+# Queue and Processing
+/queue/*.processing
+/queue/*.failed
+
+# Performance Profiling
+*.prof
+*.trace
+xdebug.log

@@ -1,0 +1,137 @@
+# File: Project Directory Structure.txt
+# Location: Root directory (for reference)
+
+WinABN/
+├── public/
+│   ├── index.php                 # Main landing + router
+│   ├── game.php                  # Quiz interface
+│   ├── pay.php                   # Payment status handling
+│   ├── claim.php                 # Prize claim interface
+│   ├── webhook_mollie.php        # Payment webhooks
+│   ├── adminportal/
+│   │   ├── index.php            # Admin dashboard
+│   │   ├── login.php            # Admin login
+│   │   ├── games.php            # Game management
+│   │   ├── rounds.php           # Round management
+│   │   ├── participants.php     # Participant management
+│   │   ├── fulfillment.php      # Prize fulfillment
+│   │   ├── analytics.php        # Business analytics
+│   │   └── settings.php         # System settings
+│   └── assets/
+│       ├── css/
+│       │   ├── bootstrap.min.css
+│       │   ├── admin.css
+│       │   └── game.css
+│       ├── js/
+│       │   ├── bootstrap.bundle.min.js
+│       │   ├── admin.js
+│       │   └── game.js
+│       └── images/
+│           ├── logos/
+│           └── prizes/
+├── controllers/
+│   ├── GameController.php       # Game flow logic
+│   ├── PaymentController.php    # Payment processing
+│   ├── AdminController.php      # Admin authentication
+│   ├── AdminGameController.php  # Admin game management
+│   ├── AdminParticipantController.php # Admin participant management
+│   ├── FulfillmentController.php # Prize fulfillment
+│   ├── DiscountController.php   # Discount & referral logic
+│   ├── TaxController.php        # Tax calculations
+│   ├── ApiController.php        # REST API endpoints
+│   └── AdminAnalyticsController.php # Analytics dashboard
+├── models/
+│   ├── Game.php                 # Game entity
+│   ├── Round.php                # Round management
+│   ├── Participant.php          # Participant data
+│   ├── Question.php             # Question management
+│   ├── Admin.php                # Admin accounts
+│   ├── Payment.php              # Payment data
+│   ├── UserAction.php           # Discount tracking
+│   ├── PrizeFulfillment.php     # Prize shipping
+│   ├── ExchangeRate.php         # Currency rates
+│   └── Analytics.php            # Event tracking
+├── views/
+│   ├── layouts/
+│   │   ├── main.php             # Main layout template
+│   │   └── admin.php            # Admin layout template
+│   ├── game/
+│   │   ├── landing.php          # Game landing page
+│   │   ├── questions.php        # Quiz interface
+│   │   ├── payment.php          # Payment page
+│   │   ├── status.php           # Game status
+│   │   └── complete.php         # Completion page
+│   ├── admin/
+│   │   ├── login.php            # Admin login form
+│   │   ├── dashboard.php        # Admin dashboard
+│   │   ├── games/               # Game management views
+│   │   ├── participants/        # Participant management
+│   │   ├── fulfillment/         # Prize fulfillment
+│   │   └── analytics/           # Analytics dashboard
+│   ├── payment/
+│   │   ├── status.php           # Payment status page
+│   │   ├── success.php          # Payment success
+│   │   └── failed.php           # Payment failed
+│   └── emails/
+│       ├── winner_notification.php
+│       ├── claim_reminder.php
+│       └── tracking_notification.php
+├── core/
+│   ├── Database.php             # Database connection
+│   ├── Router.php               # URL routing
+│   ├── Controller.php           # Base controller
+│   ├── Model.php                # Base model
+│   ├── View.php                 # Template engine
+│   ├── Session.php              # Session management
+│   ├── Security.php             # Security utilities
+│   ├── Config.php               # Configuration
+│   ├── EmailQueue.php           # Email queue management
+│   ├── EmailSender.php          # SMTP email sender
+│   ├── WhatsAppAPI.php          # WhatsApp integration
+│   ├── CurrencyConverter.php    # Currency conversion
+│   ├── SecurityLogger.php       # Security logging
+│   ├── HealthMonitor.php        # System monitoring
+│   └── Autoloader.php           # PSR-4 autoloader
+├── config/
+│   ├── database.php             # Database configuration
+│   ├── email.php                # Email settings
+│   ├── payment.php              # Payment provider settings
+│   ├── app.php                  # Application settings
+│   └── security.php             # Security configuration
+├── queues/
+│   ├── email_worker.php         # Email queue processor
+│   ├── whatsapp_worker.php      # WhatsApp queue processor
+│   └── currency_updater.php     # Daily currency update
+├── sso/
+│   ├── GoogleSSO.php            # Google OAuth
+│   ├── FacebookSSO.php          # Facebook OAuth
+│   └── AppleSSO.php             # Apple Sign In
+├── migrations/
+│   ├── 001_initial_schema.sql   # Initial database schema
+│   ├── 002_indexes.sql          # Performance indexes
+│   └── 003_seed_data.sql        # Development seed data
+├── tests/
+│   ├── Unit/
+│   │   ├── Models/
+│   │   └── Controllers/
+│   ├── Integration/
+│   │   ├── PaymentFlowTest.php
+│   │   └── GameFlowTest.php
+│   └── Performance/
+│       └── LoadTest.php
+├── logs/
+│   ├── app.log
+│   ├── security.log
+│   ├── audit.log
+│   ├── payments.log
+│   └── queue.log
+├── backups/
+│   └── .gitkeep
+├── vendor/                      # Composer dependencies
+├── .env.example                 # Environment template
+├── .env                         # Environment variables (not in git)
+├── .gitignore
+├── composer.json
+├── composer.lock
+├── README.md
+└── cron_jobs.txt               # Cron job configurations
