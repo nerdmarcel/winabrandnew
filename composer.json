@@ -1,0 +1,188 @@
+{
+    "name": "nerdmarcel/win-a-brand-new",
+    "description": "Win a Brand New - PHP quiz competition platform with payment integration",
+    "type": "project",
+    "license": "proprietary",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "NerdMarcel",
+            "email": "marcel@nerdmarcel.com"
+        }
+    ],
+    "keywords": [
+        "quiz",
+        "competition",
+        "payments",
+        "mollie",
+        "whatsapp",
+        "games"
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "ext-curl": "*",
+        "ext-openssl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-session": "*",
+        "ext-hash": "*",
+        "ext-gd": "*",
+        "mollie/mollie-api-php": "^3.0",
+        "stripe/stripe-php": "^13.0",
+        "phpmailer/phpmailer": "^6.9",
+        "firebase/php-jwt": "^6.10",
+        "ramsey/uuid": "^4.7",
+        "league/oauth2-client": "^2.7",
+        "league/oauth2-google": "^4.0",
+        "league/oauth2-facebook": "^2.2",
+        "guzzlehttp/guzzle": "^7.8",
+        "monolog/monolog": "^3.5",
+        "vlucas/phpdotenv": "^5.6",
+        "respect/validation": "^2.3",
+        "twig/twig": "^3.8",
+        "symfony/var-dumper": "^6.4",
+        "bacon/bacon-qr-code": "^2.0",
+        "pragmarx/google2fa": "^8.0",
+        "web-token/jwt-library": "^3.4",
+        "robthree/twofactorauth": "^1.8",
+        "spatie/array-to-xml": "^3.2",
+        "league/csv": "^9.11",
+        "intervention/image": "^2.7",
+        "maxmind/geoip2": "^3.0",
+        "geocoder-php/google-maps-provider": "^4.7",
+        "geocoder-php/chain-provider": "^4.5",
+        "geocoder-php/cache-provider": "^4.4",
+        "psr/cache": "^3.0",
+        "symfony/cache": "^6.4",
+        "doctrine/dbal": "^3.7",
+        "nesbot/carbon": "^2.72",
+        "league/flysystem": "^3.23",
+        "league/mime-type-detection": "^1.14",
+        "predis/predis": "^2.2",
+        "psr/log": "^3.0",
+        "psr/http-message": "^2.0",
+        "guzzlehttp/psr7": "^2.6",
+        "ralouphie/getallheaders": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5",
+        "mockery/mockery": "^1.6",
+        "phpstan/phpstan": "^1.10",
+        "squizlabs/php_codesniffer": "^3.8",
+        "friendsofphp/php-cs-fixer": "^3.48",
+        "vimeo/psalm": "^5.18",
+        "phpmd/phpmd": "^2.15",
+        "roave/security-advisories": "dev-master",
+        "fakerphp/faker": "^1.23",
+        "symfony/var-exporter": "^6.4",
+        "filp/whoops": "^2.15"
+    },
+    "autoload": {
+        "psr-4": {
+            "WinABrandNew\\": "src/",
+            "WinABrandNew\\Core\\": "core/",
+            "WinABrandNew\\Models\\": "models/",
+            "WinABrandNew\\Controllers\\": "controllers/",
+            "WinABrandNew\\Views\\": "views/",
+            "WinABrandNew\\SSO\\": "sso/",
+            "WinABrandNew\\Queues\\": "queues/"
+        },
+        "files": [
+            "core/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WinABrandNew\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-update-cmd": [
+            "@composer dump-autoload --optimize"
+        ],
+        "test": [
+            "phpunit --colors=always"
+        ],
+        "test-coverage": [
+            "phpunit --coverage-html coverage --colors=always"
+        ],
+        "phpstan": [
+            "phpstan analyse --memory-limit=2G"
+        ],
+        "psalm": [
+            "psalm --show-info=false"
+        ],
+        "cs-check": [
+            "php-cs-fixer fix --dry-run --diff --verbose"
+        ],
+        "cs-fix": [
+            "php-cs-fixer fix --verbose"
+        ],
+        "phpmd": [
+            "phpmd src,controllers,models,core text phpmd.xml"
+        ],
+        "security-check": [
+            "@composer audit"
+        ],
+        "db-migrate": [
+            "@php scripts/migrate.php"
+        ],
+        "db-seed": [
+            "@php scripts/seed.php"
+        ],
+        "queue-work": [
+            "@php queues/email_worker.php"
+        ],
+        "queue-whatsapp": [
+            "@php queues/whatsapp_worker.php"
+        ],
+        "exchange-rates": [
+            "@php queues/exchange_rate_updater.php"
+        ],
+        "dev": [
+            "@cs-check",
+            "@phpstan",
+            "@test"
+        ],
+        "prod-deploy": [
+            "@composer install --no-dev --optimize-autoloader",
+            "@composer dump-autoload --optimize --no-dev"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "platform": {
+            "php": "8.1.0"
+        },
+        "archive-format": "zip",
+        "archive-dir": "dist"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.org"
+        }
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0-dev"
+        }
+    },
+    "support": {
+        "issues": "https://github.com/nerdmarcel/winabrandnew/issues",
+        "source": "https://github.com/nerdmarcel/winabrandnew"
+    }
+}
